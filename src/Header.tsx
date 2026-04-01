@@ -1,6 +1,9 @@
-import { NAVITEMS } from "./constants/NavItems";
+type NavItemProps = {
+  name: string;
+  link: string;
+};
 
-const Header = () => {
+const Header = ({ NAVITEMS }: { NAVITEMS: NavItemProps[] }) => {
   return (
     <header className="flex justify-between px-3.5 pt-3.5 items-center">
       <h1 className="text-2xl font-bold">My App</h1>
