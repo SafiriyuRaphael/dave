@@ -187,4 +187,3 @@ type MoreUserType = UserType & {
 type UserName = string
 type UserName2 = (string | number)[] // this will give an error because we cannot declare the same type multiple times, it does not support declaration merging.
 type UserName3 = "David" | "Gray" // this will give an error because we cannot declare the same type multiple times, it does not support declaration merging.
-

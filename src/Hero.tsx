@@ -1,6 +1,8 @@
-const Hero = () => {
+const Hero = ({ lightMode }: { lightMode: boolean }) => {
   return (
-    <main className="pt-10">
+    <main
+      className={` px-3.5 h-[93vh] pt-16 ${lightMode ? "bg-gray-100 text-black" : "bg-gray-800 text-white"}`}
+    >
       <section className="hero">
         <h2 className="text-4xl font-bold">Welcome to My App</h2>
         <p className="text-lg mt-4">This is a simple hero section.</p>

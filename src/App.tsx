@@ -1,13 +1,12 @@
-import { NAVITEMS } from "./constants/NavItems";
 import Header from "./Header";
 import Hero from "./Hero";
 
 const App = () => {
-  let lightMode = true;
+  let lightMode = false;
   return (
     <div>
-      <Header NAVITEMS={NAVITEMS} />
-      <Hero />
+      <Header lightTheme={lightMode} />
+      <Hero lightMode={lightMode} />
     </div>
   );
 };
