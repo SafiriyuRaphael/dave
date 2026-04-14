@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Header from "./Header";
 import Hero from "./Hero";
 
@@ -43,8 +43,7 @@ const App = () => {
   //   lightMode = !lightMode;
   // };
 
-  //   Use Memo this for:
-
+  // Use Memo this for:
   // focusing input
   // setting value quickly
   // scrolling
@@ -52,10 +51,70 @@ const App = () => {
 
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
+  const [width, setWidth] = useState(innerWidth);
+
   const countRef = useRef(0);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  let counter = 0;
+
+  // setInterval(() => {
+  //   counter++;
+  //   console.log(counter);
+  // }, 1000);
+
+  // useEffect(() => {
+  //   console.log("runs once page mounts");
+  // }, [])
+
+  // useMemo
+  // Caches a computed value to avoid recalculating
+
+  let users = ["david", "tolu", "and", "co"];
+
+  useEffect(() => {
+    console.log("runs once page mounts");
+  }, [theme]);
+
+  useEffect(() => {
+    const resizeFuntion = () => {
+      setWidth(innerWidth);
+      console.log("page resized");
+    };
+
+    addEventListener("resize", () => {
+      resizeFuntion();
+    });
+
+    return () => {
+      removeEventListener("resize", () => {
+        resizeFuntion();
+      });
+    };
+  }, [width]);
+
+  useMemo(() => {}, []);
+
+  console.log(width);
+
+  const usersWithName = users.filter((user) => {
+    return user.length > 3;
+  });
+
+  const cachedUsers = useMemo(() => {
+    const filtered = users.filter((user) => user.length > 3);
+    return filtered;
+  }, [theme]);
+
+  console.log(usersWithName);
+  console.log(cachedUsers);
+
+  let logFriends = useCallback(() => {
+    console.log("friend");
+  }, []);
+
+  logFriends();
   return (
     <div>
       <Header lightTheme={theme} toggleTheme={setTheme} />
